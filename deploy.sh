@@ -9,8 +9,7 @@ USER=$1
 HOST=$2
 FILE=fb_ili9340.ko
 
-REAL_USER=$(ssh resinvpn -o Hostname=10.2.0.105 'jq -r .username /mnt/conf/config.json')
-
+REAL_USER=$(ssh resinvpn -o Hostname=$HOST 'jq -r .username /mnt/conf/config.json')
 if [ "$REAL_USER" != "$USER" ]; then
     echo "Error: $HOST doesn't seem to match user $USER"
     exit 1
